@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 import connection from './database/db.js';
 import messageRouter from './router/messageRouter.js'
+import {errorMiddleware} from './middlewares/errorMiddleware.js'
 
 const app = express();  
 config({path: './config/.env'});
@@ -29,4 +30,5 @@ app.use(fileUpload({
 app.use('/api/v1/message', messageRouter);
 
 
+app.use(errorMiddleware);
 export default app;
